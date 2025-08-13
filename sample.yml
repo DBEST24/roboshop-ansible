@@ -1,4 +1,4 @@
-- name: sample
+- name: my-inv
   host: all
   tasks:
     - name: ping
