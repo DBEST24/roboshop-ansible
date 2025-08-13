@@ -1,4 +1,4 @@
-- name: sample1
+- name: sample
   host: all
   tasks:
     - name: ping
