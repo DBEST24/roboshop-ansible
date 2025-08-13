@@ -15,6 +15,6 @@
   become: true
   tasks:
     - name: Install Nginx Apachex
-      ansible.builtin.dnf:f:
-        name: httpd
+      ansible.builtin.dnf:
+        name: nginx
         state: latest
