@@ -9,7 +9,7 @@
 
 
 - name: Disable Nodejs and
-  ansible.builtin.shell: dnf module diable nodejs -y
+  ansible.builtin.shell: dnf module disable nodejs -y
 
 - name: enable Nodejs 20
   ansible.builtin.shell: dnf module enable nodejs:20 -y
