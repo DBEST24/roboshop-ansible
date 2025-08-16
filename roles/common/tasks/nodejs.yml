@@ -8,8 +8,11 @@
 #  }
 
 
-- name: Disable Nodejs and enable Nodejs 20
-  command: dnf module diable nodejs -y ; dnf module enable nodejs:20 -y
+- name: Disable Nodejs and
+  command: dnf module diable nodejs -y
+
+- name: enable Nodejs 20
+  command: dnf module enable nodejs:20 -y
 
 - name: Install the Nodejs
   ansible.builtin.dnf:
