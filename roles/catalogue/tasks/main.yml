@@ -18,4 +18,4 @@
     name: mongodb-mongosh
 
 - name: Load Schema
-  command:  mongosh --host mongodb-dev.dbest24.ca </app/db/master-data.js
+  ansible.builtin.shell:  mongosh --host mongodb-dev.dbest24.ca </app/db/master-data.js
