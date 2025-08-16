@@ -1,4 +1,16 @@
+#  dnf install mongodb-mongosh -y
+#    mongosh --host mongodb-dev.dbest24.ca </app/db/master-data.js
+
+
 - name: Import NodeJS
   ansible.builtin.import_role:
     name: common
     tasks_from: nodejs
+
+- name: Copy MongoDB repo file
+  ansible.builtin.copy:
+    src: mongo.repo
+    dest: /etc/yum.repos.d/mongo.repo
+
+- name: Load Schema
+  command:  mongosh --host mongodb-dev.dbest24.ca </app/db/master-data.js
