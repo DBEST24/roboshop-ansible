@@ -1,0 +1,27 @@
+#  NODEJS(){
+#    dnf module disable nodejs -y
+#    dnf module enable nodejs:20 -y
+#    dnf install nodejs -y
+#    APP_PREREQ
+#    npm install
+#    SYSTEMD
+#  }
+
+
+- name: Disable Nodejs and enable Nodejs 20
+  command: dnf module diable nodejs -y ; dnf module enable nodejs:20 -y
+
+- name: Install the Nodejs
+  ansible.builtin.dnf:
+    name: nodejs
+    state: installed
+
+- name: Import App prereq role
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: app-prereq
+
+- name: Install nodejs dependencies
+  ansible.builtin.shell: npm install
+  args:
+    chdir: /app

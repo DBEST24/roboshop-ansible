@@ -1,0 +1,36 @@
+#  APP_PREREQ(){
+#  cp ${component}.service /etc/systemd/system/${component}.service
+#  useradd roboshop
+#  rm -rf /app
+#  mkdir /app
+#  curl  -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/${component}-v3.zip
+#  cd /app
+#  unzip /tmp/${component}.zip
+#
+#}
+
+
+- name: Copy component service file
+  ansible.builtin.copy:
+    src: "{{ component }}.service"
+    dest: /etc/systemd/system/${{component}}.service
+
+- name: Add Application user
+  ansible.builtin.user:
+    name:roboshop
+
+- name: Remove app content
+  ansible.builtin.file:
+    path: /app
+    state: absent
+
+- name: Create app directory
+  ansible.builtin.file:
+    path: /app
+    state: directory
+
+- name: Unarchive content from HTTPS URL
+  ansible.builtin.unarchive:
+    src: "https://roboshop-artifacts.s3.amazonaws.com/{{component}}-v3.zip"
+    dest: /app
+    remote_src: yes
