@@ -9,9 +9,8 @@
     src: "{{ component }}.service"
     dest: /etc/systemd/system/${{component}}.service
 
-- name: Start Service
+- name: Enable Service
   ansible.builtin.systemd_service:
-    daemon_reload: true
+    name: "{{component}}"
+    state: restarted
     enabled: true
-    state: started
-    name: "{{ component }}.service"
