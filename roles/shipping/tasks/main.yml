@@ -1,0 +1,36 @@
+#if [ -z "$1" ]; then
+#echo Input Password is missing
+#exit 1
+#fi
+#
+#
+#source common.sh
+#component=shipping
+#MAVEN
+#
+#dnf install mysql -y
+#
+#mysql -h mysql-dev.dbest24.ca -uroot -pRoboShop@1 < /app/db/schema.sql
+#
+#mysql -h mysql-dev.dbest24.ca -uroot -pRoboShop@1 < /app/db/app-user.sql
+#
+#mysql -h mysql-dev.dbest24.ca -uroot -pRoboShop@1 < /app/db/master-data.sql
+
+- name: Load Maven
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: maven
+
+- name: Install MySQL client
+  ansible.builtin.dnf:
+    name: mysql
+    state: installed
+
+- name: Load Schema
+  ansible.builtin.shell: mysql -h mysql-dev.rdevopsb85.online -uroot -pRoboShop@1 < /app/db/schema.sql
+
+- name: Load App User
+  ansible.builtin.shell: mysql -h mysql-dev.rdevopsb85.online -uroot -pRoboShop@1 < /app/db/app-user.sql
+
+- name: Load Master Data
+  ansible.builtin.shell: mysql -h mysql-dev.rdevopsb85.online -uroot -pRoboShop@1 < /app/db/master-data.sql
