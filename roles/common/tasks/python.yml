@@ -20,8 +20,8 @@
     name: common
     tasks_from: app-prereq
 
-- name: Download dependencies
-  ansible.builtin.shell: pip3.6 install -r requirements.txt
+- name: Install Python packages using python3.6
+  ansible.builtin.command: python3.6 -m pip install -r requirements.txt
   args:
     chdir: /app
 
