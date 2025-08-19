@@ -1,0 +1,36 @@
+#  PYTHON(){
+#    dnf install python3 gcc python3-devel -y
+#    APP_PREREQ
+#    pip3 install -r requirements.txt
+#    SYSTEMD
+#  }
+
+
+- name: Install Python and GCC packages
+  ansible.builtin.dnf:
+    name:
+      - python3
+      - gcc
+      - python3-devel
+    state: present
+
+
+- name: Import App prereq role
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: app-prereq
+
+- name: Copy requirements.txt to remote
+  ansible.builtin.copy:
+    src: requirements.txt
+    dest: /tmp/requirements.txt
+
+- name: Install packages
+  ansible.builtin.pip:
+    requirements: /tmp/requirements.txt
+    executable: pip3
+
+- name: Load Systemd Service
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: systemd
