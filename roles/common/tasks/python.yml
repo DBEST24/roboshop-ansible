@@ -21,7 +21,7 @@
     tasks_from: app-prereq
 
 - name: Download dependencies
-  command: pip3 install -r requirements.txt
+  ansible.builtin.shell: pip3 install -r requirements.txt
   args:
     chdir: /app
 
