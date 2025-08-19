@@ -20,11 +20,6 @@
     name: common
     tasks_from: app-prereq
 
-- name: Copy requirements.txt to remote
-  ansible.builtin.copy:
-    src: requirements.txt
-    dest: /tmp/requirements.txt
-
 - name: Install packages
   ansible.builtin.pip:
     requirements: /tmp/requirements.txt
