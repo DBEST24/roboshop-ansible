@@ -13,9 +13,7 @@
     dest: /etc/yum.repos.d/rabbitmq.repo
 
 - name: Install RabbitMq Server
-  ansible.builtin.dnf:
-    name: rabbitmq-server
-    state: installed
+  command: dnf install rabbitmq-server -y
 
 - name: Start RabbitMQ server
   ansible.builtin.systemd_service:
