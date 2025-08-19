@@ -20,6 +20,11 @@
     name: common
     tasks_from: app-prereq
 
+- name: Create an empty file
+  ansible.builtin.file:
+    path: /tmp/requirements.txt
+    state: touch
+
 - name: Install packages
   ansible.builtin.pip:
     requirements: /tmp/requirements.txt
